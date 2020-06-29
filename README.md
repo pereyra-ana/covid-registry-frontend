@@ -1,27 +1,41 @@
-# RegistroCovid
+# Covid Check
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.8.
+Covid Check es una aplicación para registrar análisis de Covid-19 y luego consultar los resultados totales o filtrar por campos específicos.
 
-## Development server
+## Requisitos
+Se requiere NPM, Maven y Visual Studio Code.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Instalacion
 
-## Code scaffolding
+Descargar mediante GIT los siguientes repositorios, que contienen el frontend y el backend:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+Frontend:  https://github.com/pereyra-ana/covid-registry-frontend
+Backend: https://github.com/pereyra-ana/covid-registry-backend 
+```
 
-## Build
+Para el backend, posicionarse en la carpeta donde se encuentra el pom.xml de la aplicación, y ejecutar los siguientes comandos:
+```bash
+mvn package
+mvn spring-boot:run
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Luego, desplegar el frontend ejecutando los siguientes comandos desde el terminal de la aplicación:
+```bash
+npm install
+ng s -o
+```
+Automáticamente, se abrirá la aplicación en un navegador, lista para usarse.
 
-## Running unit tests
+## Uso
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Desde la pantalla principal, se mostrarán, en la sección superior, las estadísticas al momento de los análisis existentes. 
 
-## Running end-to-end tests
+Debajo, se encuentra la sección para filtrar los registros. En dicha sección, se puede seleccionar un campo de la lista de filtros, para luego escoger desde la lista que se despliega, uno o más valores para realizar la búsqueda. Presionando sobre la lupa que aparece a la derecha, se realizará la obtención de los datos, que se muestran en la lista principal.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Luego, podrá accederse al detalle de un registro, presionando sobre el ícono de ojo que aparece a la derecha de cada registro.
 
-## Further help
+Finalmente, para realizar un alta de registro, debe presionarse el botón "Agregar Análisis", que se encuentra en la parte superior y cargar los datos. Todos lo que poseen el asterisco son requeridos. El formato de la cadena de ADN debe ser separado por espacios, y la cantidad de letras de cada cadena debe ser igual a la cantidad de cadenas de ADN.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Licencia
+Creado por Ana Pereyra.
