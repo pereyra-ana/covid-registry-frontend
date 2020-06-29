@@ -1,0 +1,71 @@
+table {
+    width: 100%;
+}
+
+.round-floating-button {
+    top: auto !important;
+    right: 25px !important;
+    bottom: 25px !important;
+    left: auto !important;
+    position: fixed !important;
+    z-index: 100000;
+}
+
+.mat-column-name {
+    width: 33% !important;
+}
+
+.mat-column-country {
+    width: 33% !important;
+}
+
+.mat-column-result {
+    width: 33% !important;
+}
+
+.inmune>div {
+    width: fit-content;
+    background-color: #4986e7;
+    border-radius: 5px;
+    color: white;
+    padding: 5px;
+}
+
+.infectado>div {
+    width: fit-content;
+    background-color: #fb4c2f;
+    border-radius: 5px;
+    color: white;
+    padding: 5px;
+}
+
+.sano>div {
+    width: fit-content;
+    background-color: #37ab76;
+    border-radius: 5px;
+    color: white;
+    padding: 5px;
+}
+
+.stats-container {
+    width: 100%;
+    background-color: lightgray;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.stats-div {
+    display: inline-block;
+    width: 33%;
+    text-align: center;
+}
+
+.button-new-covid-check {
+    margin-bottom: 20px;
+}
+
+.filter-input {
+    margin-left: 10px;
+}

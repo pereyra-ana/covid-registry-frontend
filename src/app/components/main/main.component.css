@@ -1,0 +1,12 @@
+table {
+    width: 100%;
+}
+
+.round-floating-button {
+    top: auto !important;
+    right: 25px !important;
+    bottom: 25px !important;
+    left: auto !important;
+    position: fixed !important;
+    z-index: 100000;
+}

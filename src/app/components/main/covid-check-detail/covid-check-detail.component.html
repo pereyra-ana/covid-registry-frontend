@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Detalle Análisis</h1>
+<div mat-dialog-content>
+    <div class="example-container">
+        <mat-form-field class="covid-check-mat-form-field">
+            <input disabled matInput placeholder="ID" [ngModel]="data.covidCheck?.id">
+        </mat-form-field>
+        <mat-form-field class="covid-check-mat-form-field">
+            <input disabled matInput placeholder="Nombre" [ngModel]="data.covidCheck?.name">
+        </mat-form-field>
+        <mat-form-field class="covid-check-mat-form-field">
+            <input disabled matInput placeholder="País" [ngModel]="data.covidCheck?.country">
+        </mat-form-field>
+        <mat-form-field class="covid-check-mat-form-field">
+            <input disabled matInput placeholder="Resultado" [ngModel]="data.covidCheck?.result">
+        </mat-form-field>
+        <mat-form-field class="covid-check-mat-form-field">
+            <mat-label>ADN</mat-label>
+            <textarea disabled matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" [ngModel]="data.covidCheck?.dna?.join(' ')"></textarea>
+        </mat-form-field>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cerrar</button>
+</div>

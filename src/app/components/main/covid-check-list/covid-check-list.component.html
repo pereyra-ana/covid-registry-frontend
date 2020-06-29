@@ -1,0 +1,92 @@
+<mat-card>
+    <mat-card-title>Registros Covid-19</mat-card-title>
+    <mat-card-subtitle>Lista de resultados para tests de Covid-19</mat-card-subtitle>
+
+    <mat-card-content>
+        <div class="stats-container">
+            <div class="stats-div">
+                Sanos <br> {{stats ? stats.healthy : 'N/A'}}
+            </div>
+            <div class="stats-div">
+                Infectados <br> {{stats ? stats.infected : 'N/A'}}
+            </div>
+            <div class="stats-div">
+                Inmunes <br> {{stats ? stats.immune : 'N/A'}}
+            </div>
+        </div>
+
+        <button mat-raised-button color="primary" class="button-new-covid-check" (click)="openNewRegistryDialog()"> Agregar
+            Análisis
+        </button>
+
+        <!-- filtro -->
+        <div>
+            <mat-form-field>
+                <mat-select placeholder="Buscar por..." [(ngModel)]="query.filter">
+                    <mat-option value="country">País</mat-option>
+                    <mat-option value="result">Resultado</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field *ngIf="query.filter === 'country'" class="filter-input">
+                <mat-select multiple placeholder="Seleccionar países" [(ngModel)]="query.value">
+                    <mat-option *ngFor="let c of countries" value="{{c}}">{{c}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field *ngIf="query.filter === 'result'" class="filter-input">
+                <mat-select multiple placeholder="Seleccionar resultados" [(ngModel)]="query.value">
+                    <mat-option value="Sano">Sano</mat-option>
+                    <mat-option value="Infectado">Infectado</mat-option>
+                    <mat-option value="Inmune">Inmune</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button mat-icon-button aria-label="Buscar" [disabled]="!query.value" (click)="filterAndGetAll()">
+                <mat-icon>search</mat-icon>
+            </button>
+            <button mat-icon-button aria-label="Limpiar" [disabled]="!query.value" (click)="cleanAndGetAll()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+        <!-- fin filtro -->
+
+        <div *ngIf="dataSource && dataSource.length > 0">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="country">
+                    <th mat-header-cell *matHeaderCellDef> País </th>
+                    <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="result">
+                    <th mat-header-cell *matHeaderCellDef> Resultado </th>
+                    <td mat-cell *matCellDef="let element" [ngClass]="getResultClass(element.result)">
+                        <div>
+                            {{element.result.toUpperCase()}}
+                        </div>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="actionsColumn">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let element">
+                        <span class="material-icons" (click)="detail(element)">
+                            remove_red_eye
+                        </span>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <!-- <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" [showFirstLastButtons]="showFirstLastButtons" (page)="onPaginateChange($event)">
+            </mat-paginator> -->
+        </div>
+        <div *ngIf="!dataSource || dataSource.length === 0">
+            No hay registros para mostrar.
+        </div>
+    </mat-card-content>
+</mat-card>

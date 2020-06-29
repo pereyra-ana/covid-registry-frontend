@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Nuevo Análisis</h1>
+<div mat-dialog-content>
+    <div class="example-container" [formGroup]="componentValidator">
+        <mat-form-field class="covid-check-mat-form-field">
+            <input formControlName="name" matInput placeholder="Nombre *" [(ngModel)]="covidCheck.name">
+            <mat-error *ngFor="let error of componentValidator.get('name').errors | getProperties">
+                <mat-error>{{validatorMessage.getError(error)}}</mat-error>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="covid-check-mat-form-field">
+            <mat-select formControlName="country" placeholder="País *" [(ngModel)]="covidCheck.country">
+                <mat-option *ngFor="let c of countries" value="{{c}}">{{c}}</mat-option>
+            </mat-select>
+            <mat-error *ngFor="let error of componentValidator.get('country').errors | getProperties">
+                <mat-error>{{validatorMessage.getError(error)}}</mat-error>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="covid-check-mat-form-field-dna">
+            <mat-label>ADN *</mat-label>
+            <textarea formControlName="dna" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" [(ngModel)]="dna"></textarea>
+            <mat-error *ngFor="let error of componentValidator.get('dna').errors | getProperties">
+                <mat-error>{{validatorMessage.getError(error)}}</mat-error>
+            </mat-error>
+        </mat-form-field>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="submit()" cdkFocusInitial>Crear</button>
+    <button mat-button (click)="onNoClick()">Cancelar</button>
+</div>
