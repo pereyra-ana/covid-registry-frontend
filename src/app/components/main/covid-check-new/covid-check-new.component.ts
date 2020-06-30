@@ -7,7 +7,7 @@ import { CovidCheck } from 'src/app/model/covid-check/covid-check';
 import { CovidCheckService } from 'src/app/services/covid-check/covid-check.service';
 import { ValidatorsCustom } from 'src/app/validators/custom.validator';
 import { ValidatorMessage } from 'src/app/validators/validators.messages';
-import { countriesList } from "../../../countries";
+import { countriesList } from '../../../countries';
 
 export interface DialogData {
   result: boolean;
@@ -49,9 +49,10 @@ export class CovidCheckNewComponent implements OnInit {
     })
   });
 
-  constructor(public dialogRef: MatDialogRef<CovidCheckNewComponent>,
+  constructor(
+    public dialogRef: MatDialogRef<CovidCheckNewComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private _ngZone: NgZone,
+    private ngZone: NgZone,
     private covidCheckService: CovidCheckService,
     private formBuilder: FormBuilder,
     public validatorMessage: ValidatorMessage,
@@ -62,7 +63,7 @@ export class CovidCheckNewComponent implements OnInit {
 
   triggerResize() {
     // Wait for changes to be applied, then trigger textarea resize.
-    this._ngZone.onStable.pipe(take(1))
+    this.ngZone.onStable.pipe(take(1))
       .subscribe(() => this.autosize.resizeToFitContent(true));
   }
 
@@ -94,8 +95,7 @@ export class CovidCheckNewComponent implements OnInit {
           panelClass: ['snackbar-error'],
           duration: 2000,
         });
-      })
-    } else {
+      });
     }
   }
 }

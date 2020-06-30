@@ -16,16 +16,17 @@ export interface DialogData {
 })
 export class CovidCheckDetailComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<CovidCheckDetailComponent>,
+  constructor(
+    public dialogRef: MatDialogRef<CovidCheckDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private _ngZone: NgZone
+    private ngZone: NgZone
   ) { }
 
   @ViewChild('autosize', { static: false }) autosize: CdkTextareaAutosize;
 
   triggerResize() {
     // Wait for changes to be applied, then trigger textarea resize.
-    this._ngZone.onStable.pipe(take(1))
+    this.ngZone.onStable.pipe(take(1))
       .subscribe(() => this.autosize.resizeToFitContent(true));
   }
 

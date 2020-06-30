@@ -20,18 +20,10 @@ export class CovidCheckListComponent implements OnInit {
 
   countries = countriesList.countries;
 
-  // paginator
-  // length: number;
-  // pageIndex = 1;
-  // pageSize = 5;
-  // pageSizeOptions = [];
-  // showFirstLastButtons = true;
-  // pageEvent: PageEvent;
-
   query = {
     filter: '',
     value: ''
-  }
+  };
 
   result: boolean;
 
@@ -52,7 +44,7 @@ export class CovidCheckListComponent implements OnInit {
 
     this.covidCheckService.getStats().subscribe(stats => {
       this.stats = stats;
-    })
+    });
   }
 
   openNewRegistryDialog(): void {
@@ -62,7 +54,7 @@ export class CovidCheckListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result == true) {
+      if (result === true) {
         this.snackBar.open('Registro cargado con éxito', 'Cerrar', {
           panelClass: ['snackbar-success'],
           duration: 2000,
@@ -85,36 +77,28 @@ export class CovidCheckListComponent implements OnInit {
     this.covidCheckService.getAll().subscribe(data => {
       if (data) {
         this.dataSource = data.results;
-        // this.length = data.results.length;
-        // this.pageSize = this.length;
-        // this.pageSizeOptions = [this.length];
       } else {
         this.dataSource = [];
-        // this.length = 0;
       }
 
-    })
+    });
   }
 
   getAllWithFilter(): void {
     this.covidCheckService.getAllWithFilter(this.query.filter, this.query.value).subscribe(data => {
       if (data) {
         this.dataSource = data.results;
-        // this.length = data.results.length;
-        // this.pageSize = this.length;
-        // this.pageSizeOptions = [this.length];
       } else {
         this.dataSource = [];
-        // this.length = 0;
       }
-    })
+    });
   }
 
   openDetailDialog(covidCheckId: string): void {
     this.covidCheckService.getById(covidCheckId).subscribe(covidCheck => {
       const dialogRef = this.dialog.open(CovidCheckDetailComponent, {
         width: '400px',
-        data: { covidCheck: covidCheck }
+        data: { covidCheck }
       });
 
       dialogRef.afterClosed().subscribe(result => {
@@ -133,14 +117,8 @@ export class CovidCheckListComponent implements OnInit {
   }
 
   filterAndGetAll(): void {
-    // this.pageIndex = 1;
     this.getAllWithFilter();
   }
 
-  // onPaginateChange(event) {
-  //   this.pageIndex = event.pageIndex + 1;
-  //   this.pageSize = event.pageSize;
-  //   this.getAll();
-  // }
 }
 

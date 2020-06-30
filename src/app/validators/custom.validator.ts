@@ -8,7 +8,7 @@ export class ValidatorsCustom {
     }
 
     static isValidDNAStructure(fc: AbstractControl): ValidationErrors | null {
-        const dnaList = fc.value.split(" ");
+        const dnaList = fc.value.split(' ');
         const countChains = dnaList.length;
         let isNxN = true;
         dnaList.forEach(chain => {
